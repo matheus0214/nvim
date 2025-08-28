@@ -29,9 +29,9 @@ return {
         end,
     },
     {
-        "nvim-treesitter/nvim-treesitter", 
-        branch = 'master', 
-        lazy = false, 
+        "nvim-treesitter/nvim-treesitter",
+        branch = 'master',
+        lazy = false,
         build = ":TSUpdate",
         dependencies = { "OXY2DEV/markview.nvim" },
         config = function()
@@ -83,7 +83,7 @@ return {
           "MunifTanjim/nui.nvim",
         },
         lazy = false,
-        config = function() 
+        config = function()
             require("neo-tree").setup({})
         end
     },
@@ -113,6 +113,12 @@ return {
           lspconfig.lua_ls.setup ({})
           lspconfig.eslint.setup ({})
           lspconfig.ts_ls.setup ({})
+        end
+    },
+    {
+        "sainnhe/gruvbox-material",
+        config = function()
+            vim.cmd('colorscheme gruvbox-material')
         end
     }
 }
