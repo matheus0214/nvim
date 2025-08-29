@@ -40,41 +40,41 @@ return {
             })
         end
     },
-    {
-        "hrsh7th/nvim-cmp",
-        dependencies = {
-            'neovim/nvim-lspconfig',
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-cmdline',
-            'hrsh7th/nvim-cmp',
-        },
-        event = "InsertEnter",
-        config = function()
-            local cmp = require("cmp")
-
-            cmp.setup({
-                completion = {
-                    completeopt = "menu,menuone,noselect"
-                },
-                snippet = {
-                    expand = function(_) end, -- não usamos snippets aqui
-                },
-                mapping = cmp.mapping.preset.insert({
-                    ["<Tab>"] = cmp.mapping.select_next_item(),
-                    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-                    ["<C-Space>"] = cmp.mapping.complete(),
-                    ["<CR>"] = cmp.mapping.confirm({ select = true }),
-                }),
-                sources = cmp.config.sources({
-                    { name = "path" },
-                    { name = "buffer" },
-                    { name = 'nvim_lsp' },
-                }),
-            })
-        end,
-    },
+    -- {
+    --     "hrsh7th/nvim-cmp",
+    --     dependencies = {
+    --         'neovim/nvim-lspconfig',
+    --         'hrsh7th/cmp-nvim-lsp',
+    --         'hrsh7th/cmp-buffer',
+    --         'hrsh7th/cmp-path',
+    --         'hrsh7th/cmp-cmdline',
+    --         'hrsh7th/nvim-cmp',
+    --     },
+    --     event = "InsertEnter",
+    --     config = function()
+    --         local cmp = require("cmp")
+    --
+    --         cmp.setup({
+    --             completion = {
+    --                 completeopt = "menu,menuone,noselect"
+    --             },
+    --             snippet = {
+    --                 expand = function(_) end, -- não usamos snippets aqui
+    --             },
+    --             mapping = cmp.mapping.preset.insert({
+    --                 ["<Tab>"] = cmp.mapping.select_next_item(),
+    --                 ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+    --                 ["<C-Space>"] = cmp.mapping.complete(),
+    --                 ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    --             }),
+    --             sources = cmp.config.sources({
+    --                 { name = "path" },
+    --                 { name = "buffer" },
+    --                 { name = 'nvim_lsp' },
+    --             }),
+    --         })
+    --     end,
+    -- },
     {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
