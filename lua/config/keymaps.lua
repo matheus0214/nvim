@@ -13,8 +13,8 @@ setmap("n", "<leader>df", vim.diagnostic.open_float, { desc = "Open diagnostic f
 setmap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
 
 setmap('n', '<leader>q', '<CMD>:quit<CR>', { desc = 'Quit' })
-setmap('n', '<leader>\\', ':vsplit<CR>', { noremap = true, silent = true })
-setmap('n', '<leader>-', ':split<CR>', { noremap = true, silent = true })
+setmap('n', '<leader>vs', ':vsplit<CR>', { noremap = true, silent = true })
+setmap('n', '<leader>vh', ':split<CR>', { noremap = true, silent = true })
 
 setmap('n', '<leader>wl', '<C-w>l', { noremap = true, silent = true })
 setmap('n', '<leader>wh', '<C-w>h', { noremap = true, silent = true })
@@ -23,6 +23,28 @@ setmap('n', '<leader>wk', '<C-w>k', { noremap = true, silent = true })
 
 setmap('n', '<Esc><Esc>', ':nohlsearch<CR>', { noremap = true, silent = true })
 
+setmap("n", "<leader>fm", function()
+  require("conform").format({ lsp_fallback = true })
+end, { desc = "Format file with conform" })
 
 setmap('n', '<leader>e', '<CMD>:Neotree toggle float reveal_force_cwd<CR>', { noremap = true, silent = true })
 setmap('n', '<leader>gs', '<CMD>:Neotree toggle float git_status<CR>', { noremap = true, silent = true })
+
+setmap("n", "<leader>w", ":w<CR>", { desc = "Save file" })
+setmap("n", "<leader>q", ":q<CR>", { desc = "Quit file" })
+setmap("n", "<leader>x", ":wq<CR>", { desc = "Save and quit" })
+setmap("n", "<leader>c", ":bd<CR>", { desc = "Save and quit" })
+setmap('i', 'jj', '<Esc>', { noremap = true, silent = true })
+
+setmap({"n","v"}, "<leader>y", '"+y', { desc = "Copy to system clipboard" })
+setmap("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
+
+-- Open/close tabs
+setmap("n", "<leader>tt", ":tabnew<CR>", { desc = "New tab" })
+setmap("n", "<leader>tc", ":tabclose<CR>", { desc = "Close tab" })
+setmap("n", "<leader>to", ":tabonly<CR>", { desc = "Close other tabs" })
+
+-- Move to next / previous tab
+setmap("n", "tn", ":tabnext<CR>", { desc = "Next tab" })
+setmap("n", "tp", ":tabprevious<CR>", { desc = "Previous tab" })
+
