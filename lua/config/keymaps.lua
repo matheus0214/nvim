@@ -48,3 +48,5 @@ setmap("n", "<leader>to", ":tabonly<CR>", { desc = "Close other tabs" })
 setmap("n", "tn", ":tabnext<CR>", { desc = "Next tab" })
 setmap("n", "tp", ":tabprevious<CR>", { desc = "Previous tab" })
 
+setmap({ "n", "v" }, "gh", "^", { desc = "Go to line start" })
+setmap({ "n", "v" }, "gl", "$", { desc = "Go to line end" })
