@@ -36,7 +36,11 @@ return {
         dependencies = { "OXY2DEV/markview.nvim" },
         config = function()
             require("nvim-treesitter.configs").setup({
-                ensure_installed = {"markdown", "markdown_inline"}
+                ensure_installed = {"markdown", "markdown_inline"},
+                sync_install = true,
+                ignore_install = {},
+                auto_install = true,
+                modules = {}
             })
         end
     },
@@ -116,9 +120,9 @@ return {
         end
     },
     {
-        "sainnhe/gruvbox-material",
+        "Mofiqul/adwaita.nvim",
         config = function()
-            vim.cmd('colorscheme gruvbox-material')
+            vim.cmd('colorscheme adwaita')
         end
     },
     {
@@ -139,5 +143,8 @@ return {
                 }
             })
         end
+    },
+    {
+        "xiyaowong/transparent.nvim"
     }
 }

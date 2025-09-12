@@ -39,14 +39,9 @@ setmap('i', 'jj', '<Esc>', { noremap = true, silent = true })
 setmap({"n","v"}, "<leader>y", '"+y', { desc = "Copy to system clipboard" })
 setmap("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
 
--- Open/close tabs
-setmap("n", "<leader>tt", ":tabnew<CR>", { desc = "New tab" })
-setmap("n", "<leader>tc", ":tabclose<CR>", { desc = "Close tab" })
-setmap("n", "<leader>to", ":tabonly<CR>", { desc = "Close other tabs" })
-
 -- Move to next / previous tab
-setmap("n", "tn", ":tabnext<CR>", { desc = "Next tab" })
-setmap("n", "tp", ":tabprevious<CR>", { desc = "Previous tab" })
+setmap("n", "tn", ":BufferNext<CR>", { desc = "Next tab" })
+setmap("n", "tp", ":BufferPrevious<CR>", { desc = "Previous tab" })
 
 setmap({ "n", "v" }, "gh", "^", { desc = "Go to line start" })
 setmap({ "n", "v" }, "gl", "$", { desc = "Go to line end" })
