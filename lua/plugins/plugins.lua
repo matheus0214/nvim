@@ -112,11 +112,9 @@ return {
     {
         "neovim/nvim-lspconfig",
         config = function()
-          local lspconfig = require('lspconfig')
-
-          lspconfig.lua_ls.setup ({})
-          lspconfig.eslint.setup ({})
-          lspconfig.ts_ls.setup ({})
+          vim.lsp.config["lua_ls"] = {}
+          vim.lsp.config["eslint"] = {}
+          vim.lsp.config["ts_ls"] = {}
         end
     },
     {
