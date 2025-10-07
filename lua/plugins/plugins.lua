@@ -33,10 +33,9 @@ return {
         branch = 'master',
         lazy = false,
         build = ":TSUpdate",
-        dependencies = { "OXY2DEV/markview.nvim" },
         config = function()
             require("nvim-treesitter.configs").setup({
-                ensure_installed = {"markdown", "markdown_inline"},
+                ensure_installed = {},
                 sync_install = true,
                 ignore_install = {},
                 auto_install = true,
