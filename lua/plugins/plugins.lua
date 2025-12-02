@@ -144,5 +144,8 @@ return {
     },
     {
         "xiyaowong/transparent.nvim"
+    },
+    {
+        "romgrk/barbar.nvim"
     }
 }
