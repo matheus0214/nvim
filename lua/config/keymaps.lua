@@ -27,8 +27,8 @@ setmap("n", "<leader>fm", function()
   require("conform").format({ lsp_fallback = true })
 end, { desc = "Format file with conform" })
 
-setmap('n', '<leader>e', '<CMD>:Neotree toggle float reveal_force_cwd<CR>', { noremap = true, silent = true })
-setmap('n', '<leader>gs', '<CMD>:Neotree toggle float git_status<CR>', { noremap = true, silent = true })
+setmap('n', '<leader>e', '<CMD>:Neotree toggle reveal_force_cwd<CR>', { noremap = true, silent = true })
+setmap('n', '<leader>gs', '<CMD>:Neotree toggle git_status<CR>', { noremap = true, silent = true })
 
 setmap("n", "<leader>w", ":w<CR>", { desc = "Save file" })
 setmap("n", "<leader>q", ":q<CR>", { desc = "Quit file" })
