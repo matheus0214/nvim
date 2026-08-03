@@ -10,11 +10,12 @@ o.termguicolors = true
 o.showmode = false -- não mostrar -- INSERT -- (plugins como lualine já mostram isso)
 o.laststatus = 3 -- usar uma única barra de status global
 o.wrap = false -- não quebrar linhas longas
-
+o.conceallevel = 0
 -- Tabs e indentação
 o.expandtab = true -- converte TAB em espaços
-o.tabstop = 4
-o.shiftwidth = 4
+o.tabstop = 2
+o.shiftwidth = 2
+o.softtabstop = 2
 o.smartindent = true
 o.autoindent = true
 o.breakindent = true
