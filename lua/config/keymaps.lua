@@ -10,7 +10,8 @@ setmap('n', 'gr', telescope.lsp_references, { desc = 'See all symbol references'
 
 setmap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
 
-setmap('n', '<leader>dl', '<cmd>Telescope diagnostics<cr>', { desc = 'LSP Workspace Diagnostics' })
+setmap('n', '<leader>dl', '<cmd>Telescope diagnostics<cr>', { desc = 'LSP file diagnostics' })
+setmap('n', '<leader>dL', '<cmd>Telescope lsp_workspace_diagnostics<cr>', { desc = 'LSP workspace diagnostics' })
 setmap("n", "<leader>df", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
 
 setmap('n', '<leader>q', '<CMD>:quit<CR>', { desc = 'Quit' })

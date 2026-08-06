@@ -100,7 +100,6 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           "lua_ls",
-          "eslint",
           "ts_ls"
         }
       })
@@ -110,7 +109,6 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       vim.lsp.config["lua_ls"] = {}
-      vim.lsp.config["eslint"] = {}
       vim.lsp.config["ts_ls"] = {}
     end
   },
