@@ -7,10 +7,15 @@ return {
     },
     config = function()
       local telescope = require('telescope')
+      local open_with_trouble = require('trouble.sources.telescope').open
 
       telescope.setup({
         defaults = {
           file_ignore_patterns = { "%.git/", "node_modules/" },
+          mappings = {
+            i = { ["<c-t>"] = open_with_trouble }, -- Ctrl+T em modo de inserção envia para o Trouble
+            n = { ["t"] = open_with_trouble },     -- 't' em modo normal envia para o Trouble
+          },
         },
       })
 
@@ -96,6 +101,7 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
+    dependencies = { "williamboman/mason.nvim" },
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
@@ -106,10 +112,38 @@ return {
     end
   },
   {
-    "neovim/nvim-lspconfig",
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "VeryLazy",
+    priority = 1000,
+    opts = {},
     config = function()
-      vim.lsp.config["lua_ls"] = {}
-      vim.lsp.config["ts_ls"] = {}
+      require("tiny-inline-diagnostic").setup({
+        options = {
+          multilines = {
+            enabled = true,
+          },
+        },
+      })
+    end
+  },
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = { "williamboman/mason-lspconfig.nvim" },
+    config = function()
+      vim.diagnostic.config({ virtual_text = false })
+
+      local lua_cfg = vim.lsp.config.lua_ls
+      local ts_cfg = vim.lsp.config.ts_ls
+
+      if lua_cfg then
+        vim.lsp.config('lua_ls', lua_cfg)
+        vim.lsp.enable('lua_ls')
+      end
+
+      if ts_cfg then
+        vim.lsp.config('ts_ls', ts_cfg)
+        vim.lsp.enable('ts_ls')
+      end
     end
   },
   {
@@ -146,9 +180,6 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require('lualine').setup({
-        options = {
-          theme = 'onedark'
-        }
       })
     end
   },
@@ -157,7 +188,7 @@ return {
     name = "gruvbox",
     priority = 1000,
     config = function()
-      vim.cmd("colorscheme gruvbox")
+      -- vim.cmd("colorscheme gruvbox")
     end
   },
   {
@@ -165,7 +196,7 @@ return {
     lazy = true,
     dependencies = {
       -- Only one of these is needed.
-      "sindrets/diffview.nvim", -- optional
+      "sindrets/diffview.nvim",   -- optional
       "esmuellert/codediff.nvim", -- optional
 
       -- For a custom log pager
@@ -173,13 +204,50 @@ return {
 
       -- Only one of these is needed.
       "nvim-telescope/telescope.nvim", -- optional
-      "ibhagwan/fzf-lua",            -- optional
-      "nvim-mini/mini.pick",         -- optional
-      "folke/snacks.nvim",           -- optional
+      "ibhagwan/fzf-lua",              -- optional
+      "nvim-mini/mini.pick",           -- optional
+      "folke/snacks.nvim",             -- optional
     },
     cmd = "Neogit",
     keys = {
       { "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" }
     }
+  },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    config = function()
+      vim.cmd([[ colorscheme catppuccin-frappe]])
+    end
+  },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" }, -- Ícones bonitos para os erros
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Trouble: Diagnósticos do Projeto (Workspace)",
+      },
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Trouble: Diagnósticos do Arquivo Atual (Buffer)",
+      },
+      {
+        "<leader>xq",
+        "<cmd>Trouble qflist toggle<cr>",
+        desc = "Trouble: Lista Quickfix",
+      },
+    },
+    opts = {
+      -- Você pode deixar vazio para usar os padrões da v3 que são excelentes,
+      -- ou customizar o comportamento aqui dentro se desejar.
+    },
+  },
+  {
+    "aronjohanns/smooth-resize.nvim"
   }
 }

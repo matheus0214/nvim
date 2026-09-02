@@ -1,18 +1,34 @@
 local setmap = vim.keymap.set
 local telescope = require('telescope.builtin')
 
-setmap('n', '<leader>ff', telescope.find_files, { desc = 'Telescope find files' })
-setmap('n', '<leader>fg', telescope.live_grep, { desc = 'Telescope live grep' })
-setmap('n', '<leader>fb', telescope.buffers, { desc = 'Telescope buffers' })
+setmap('n', '<leader>f', telescope.find_files, { desc = 'Telescope find files' })
+setmap('n', '<leader>g', telescope.live_grep, { desc = 'Telescope live grep' })
+setmap('n', '<leader>b', telescope.buffers, { desc = 'Telescope buffers' })
 setmap('n', '<leader>fh', telescope.help_tags, { desc = 'Telescope help tags' })
 setmap('n', '<leader>s', telescope.lsp_document_symbols, { desc = 'Telescope show document symbols' })
 setmap('n', 'gr', telescope.lsp_references, { desc = 'See all symbol references' })
 
+setmap('n', '<leader>cs', function()
+  require("trouble").open({
+    mode = "symbols",
+    pinned = true,                  -- Mantém os símbolos focados mesmo mudando de arquivo
+    win = { position = "right" }    -- Abre como uma barra lateral à direita (estilo VSCode)
+  })
+end, { desc = 'Trouble: Símbolos do Documento' })
+
 setmap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
 
-setmap('n', '<leader>dl', '<cmd>Telescope diagnostics<cr>', { desc = 'LSP file diagnostics' })
-setmap('n', '<leader>dL', '<cmd>Telescope lsp_workspace_diagnostics<cr>', { desc = 'LSP workspace diagnostics' })
+setmap('n', '<leader>dl', function()
+  require("trouble").open({ mode = "diagnostics", filter = { buf = 0 } })
+end, { desc = 'Trouble: Diagnósticos do Documento' })setmap('n', '<leader>dL', '<cmd>Telescope lsp_workspace_diagnostics<cr>', { desc = 'LSP workspace diagnostics' })
+
+setmap('n', '<leader>dx', function()
+  require("trouble").close()
+end, { desc = 'Trouble: Fechar Painel' })
+
 setmap("n", "<leader>df", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
+
+setmap({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { desc = 'LSP Code Action' })
 
 setmap('n', '<leader>q', '<CMD>:quit<CR>', { desc = 'Quit' })
 setmap('n', '<leader>vs', ':vsplit<CR>', { noremap = true, silent = true })
@@ -47,3 +63,8 @@ setmap("n", "tp", ":BufferPrevious<CR>", { desc = "Previous tab" })
 
 setmap({ "n", "v" }, "gh", "^", { desc = "Go to line start" })
 setmap({ "n", "v" }, "gl", "$", { desc = "Go to line end" })
+
+setmap('n', '<C-S-k>', '<cmd>resize +5<CR>',          { desc = 'Janela: Aumentar Altura' })
+setmap('n', '<C-S-j>', '<cmd>resize -5<CR>',          { desc = 'Janela: Diminuir Altura' })
+setmap('n', '<C-S-h>', '<cmd>vertical resize -5<CR>', { desc = 'Janela: Diminuir Largura' })
+setmap('n', '<C-S-l>', '<cmd>vertical resize +5<CR>', { desc = 'Janela: Aumentar Largura' })
