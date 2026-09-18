@@ -169,10 +169,10 @@ return {
     "navarasu/onedark.nvim",
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
-      -- require('onedark').setup {
-      --   style = 'warmer'
-      -- }
-      -- require('onedark').load()
+      require('onedark').setup {
+        style = 'warmer'
+      }
+      require('onedark').load()
     end
   },
   {
@@ -214,14 +214,6 @@ return {
     }
   },
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
-    config = function()
-      vim.cmd([[ colorscheme catppuccin-frappe]])
-    end
-  },
-  {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" }, -- Ícones bonitos para os erros
     cmd = "Trouble",
@@ -241,10 +233,6 @@ return {
         "<cmd>Trouble qflist toggle<cr>",
         desc = "Trouble: Lista Quickfix",
       },
-    },
-    opts = {
-      -- Você pode deixar vazio para usar os padrões da v3 que são excelentes,
-      -- ou customizar o comportamento aqui dentro se desejar.
     },
   },
   {
